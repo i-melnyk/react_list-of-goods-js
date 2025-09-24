@@ -21,6 +21,7 @@ const SORT_FIELD_LENGTH = 'length';
 
 function getPreparedGoods(goods, { sortField, reverse }) {
   const prepareGoods = [...goods];
+
   if (sortField) {
     prepareGoods.sort((good1, good2) => {
       switch (sortField) {
@@ -33,9 +34,11 @@ function getPreparedGoods(goods, { sortField, reverse }) {
       }
     });
   }
+
   if (reverse) {
     prepareGoods.reverse();
   }
+
   return prepareGoods;
 }
 
@@ -51,7 +54,10 @@ export const App = () => {
   const handleSortAlphabetically = () => setSortField(SORT_FIELD_ALPHABET);
   const handleSortByLength = () => setSortField(SORT_FIELD_LENGTH);
   const handleToggleReverse = () => setReverse(!reverse);
-  const handleResetList = () => setSortField('');
+  const handleResetList = () => {
+    setSortField('');
+    setReverse(false);
+  };
 
   return (
     <div className="section content">
